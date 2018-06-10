@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ref引用的作用</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+	<div id="root">
+		<counter ref="one" @change="handleChange"></counter>
+		<counter ref="two" @change="handleChange"></counter>
+		<div>{{total}}</div>
+	</div>
+
+	<script type="text/javascript">
+		
+		Vue.component('counter',{
+			template:"<div @click='handleClick'>{{count}}</div>",
+			data:function(){
+				return{
+					count:0
+				}
+			},
+			methods:{
+				handleClick:function(){
+					this.count ++;
+					this.$emit('change');
+				}
+			}
+		});
+
+		var vm = new Vue({
+			el:"#root",
+			data:{
+				total:0
+			},
+			methods:{
+				handleChange:function(){
+					this.total = this.$refs.one.count + this.$refs.two.count;
+				}
+			}
+		});
+
+
+	</script>
+</body>
+</html>

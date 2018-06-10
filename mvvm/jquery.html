@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MVP设计模式</title>
+</head>
+<body>
+	<div>
+		<input type=""  id="input" name="">
+		<button id="btn">提交</button>
+		<ul id="ul"></ul>
+	</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function Page(){
+
+	}
+
+	$.extend(Page.prototype,{
+
+		init:function(){
+			this.bindEvent();
+		},
+		bindEvent:function(){
+			var $btn = $("#btn");
+
+			$btn.on("click",$.proxy(this.handleClick,this)); //proxy重新指定this; 
+		},
+		handleClick:function(){
+			var $input = $("#input");
+			var $ul = $("#ul");
+			var inputValue = $input.val();
+			
+			$ul.append("<li>"+inputValue+"</li>");
+			$input.val('');
+		}
+	});
+
+	var page = new Page();
+	page.init();
+
+</script>
+</body>
+</html>

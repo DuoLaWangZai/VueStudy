@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue todoList</title>
+	<!-- 开发环境版本，包含了用帮助的命令行警告 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+
+	<script type="text/javascript">
+		
+
+		var vm = new Vue({
+			el:"#root",
+			beforeCreate:function(){
+				console.log("beforeCreated");
+			},
+			created:function(){
+				console.log("created");
+			},
+			beforeMount:function(){
+				console.log("beforeMount");
+			},
+			mounted:function(){
+				console.log("mounted");
+			},
+			beforeDestroy:function(){
+				console.log("beforeDestroy");
+			},
+			destroyed:function(){
+				console.log("destroyed");
+			}
+		});
+
+
+	</script>
+</body>
+</html>

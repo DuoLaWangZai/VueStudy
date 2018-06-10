@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue todoList</title>
+	<!-- 开发环境版本，包含了用帮助的命令行警告 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<div>
+			<input v-model="content" type="" name="">
+			<button @click="handleClick">提交</button>
+		</div>
+		<ul>
+			<todo-item 
+				v-for="(item,index) of list" 
+				:content="item"
+				:index="index"
+				@delete="handleDelete"
+				:key="index">{{item}}</todo-item>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		
+		Vue.component('todo-item',{
+			props:['content','index'],
+			template:"<li @click='handleClick'>{{content}}</li>",
+			methods:{
+				handleClick:function(){
+					this.$emit("delete",this.index);
+				}
+			}
+		});
+
+
+		var vm = new Vue({
+			el:"#root",
+			data:{
+				content:"",
+				list:[1]
+			},
+			methods:{
+				handleClick:function(){
+					this.list.push(this.content);
+					this.content="";
+				},
+				handleDelete:function(index){
+					this.list.splice(index,1);
+				}
+			}
+		});
+	</script>
+</body>
+</html>
